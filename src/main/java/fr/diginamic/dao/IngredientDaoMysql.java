@@ -10,6 +10,12 @@ import fr.diginamic.entities.Ingredient;
 public class IngredientDaoMysql implements IngredientDao {
 
 	@Override
+	/** Récupérer l'ingrédient
+	 * *
+	 * @param em
+	 * @param libelle
+	 * @return
+	 */
 	public Ingredient getIngredient(EntityManager em, String libelle) {
 		Ingredient Ingredient = null;
 		String sqlReq = "select f from Ingredient f where libelle = :lib ";		
@@ -25,6 +31,12 @@ public class IngredientDaoMysql implements IngredientDao {
 	}
 
 	@Override
+	/** Insérer l'ingrédient
+	 * *
+	 * @param em
+	 * @param libelle
+	 * @return
+	 */
 	public void insererIngredient(EntityManager em, Ingredient ingredient) {
 		em.persist( ingredient);
 

@@ -8,6 +8,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -18,13 +20,24 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="PRODUIT")
+/** Produit de open food facts
+ * 
+ * @author acer
+ *
+ */
 public class Produit {
 	@Id
+	@GeneratedValue( strategy = GenerationType.AUTO)
+	/** Identifiant généré par Mariadb */
+	private int		id;
+	
 	@Column(name="nom_produit")
+	/** Nom du produit */
 	private	String						nomProduit;
 	
 	@Column(name="grade_nutritionnel")
-	private char	gradeNutritionnel; // a à f
+	/** Qualité nutritionnelle de a à f */
+	private char	gradeNutritionnel;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_categorie")
@@ -33,6 +46,27 @@ public class Produit {
 	@ManyToOne
 	@JoinColumn(name = "id_marque")
 	private Marque	marque;	
+
+	@ManyToMany
+	@JoinTable(	name="produit_ingredient", 
+	joinColumns= @JoinColumn(name="id_produit", referencedColumnName="id"),	
+	inverseJoinColumns = @JoinColumn(name="id_ingredient", referencedColumnName="id"))	
+	private Set<Ingredient>				lstIngredient = new HashSet<Ingredient>();
+	
+
+	@ManyToMany
+	@JoinTable(	name="produit_allergene", 
+	joinColumns= @JoinColumn(name="id_produit", referencedColumnName="id"),	
+	inverseJoinColumns = @JoinColumn(name="id_allergene", referencedColumnName="id"))	
+	private Set<Allergene>				lstAllergene = new HashSet<Allergene>();
+
+	
+	@ManyToMany
+	@JoinTable(	name="produit_additif", 
+	joinColumns= @JoinColumn(name="id_produit", referencedColumnName="id"),	
+	inverseJoinColumns = @JoinColumn(name="id_additif", referencedColumnName="id"))	
+	private Set< Additif>				lstAdditif = new HashSet<Additif>();
+	
 
 	@Column(name="energie_100g")
 	private float energie100g ;
@@ -102,17 +136,6 @@ public class Produit {
 	
 	@Column(name="presence_Huile_Palme")
 	private float presenceHuilePalme ;	
-	
-	@ManyToMany
-	@JoinTable(	name="produit_ingredient", 
-	joinColumns= @JoinColumn(name="nom_produit", referencedColumnName="nom_produit"),	
-	inverseJoinColumns = @JoinColumn(name="nom_ingredient", referencedColumnName="id"))	
-	private Set<Ingredient>				lstIngredient = new HashSet<Ingredient>();;
-	
-/**	
-	private Set<Allergene>				lstAllergene ;
-	private Set< Additif>				lstAdditif ;
-**/
 	
 	public Produit( String nom, 			char 			gradeNutritionnel, 
 					Categorie	categorie, 	Marque			marque) {
@@ -627,6 +650,48 @@ public Set<Ingredient> getLstIngredient() {
  */
 public void setLstIngredient(Set<Ingredient> lstIngredient) {
 	this.lstIngredient = lstIngredient;
+}
+
+/** Getter
+ * @return the lstAllergene
+ */
+public Set<Allergene> getLstAllergene() {
+	return lstAllergene;
+}
+
+/** Setter
+ * @param lstAllergene the lstAllergene to set
+ */
+public void setLstAllergene(Set<Allergene> lstAllergene) {
+	this.lstAllergene = lstAllergene;
+}
+
+/** Getter
+ * @return the id
+ */
+public int getId() {
+	return id;
+}
+
+/** Setter
+ * @param id the id to set
+ */
+public void setId(int id) {
+	this.id = id;
+}
+
+/** Getter
+ * @return the lstAdditif
+ */
+public Set<Additif> getLstAdditif() {
+	return lstAdditif;
+}
+
+/** Setter
+ * @param lstAdditif the lstAdditif to set
+ */
+public void setLstAdditif(Set<Additif> lstAdditif) {
+	this.lstAdditif = lstAdditif;
 }
 
 }

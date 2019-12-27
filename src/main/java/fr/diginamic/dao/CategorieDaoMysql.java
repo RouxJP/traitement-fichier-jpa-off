@@ -9,6 +9,12 @@ import fr.diginamic.entities.Categorie;
 public class CategorieDaoMysql implements CategorieDao{
 
 	@Override
+	/** Récupérer la catégorie
+	 * *
+	 * @param em
+	 * @param libelle
+	 * @return
+	 */
 	public Categorie getCategorie( EntityManager em, String libelle) {
 		Categorie categorie = null;
 		String sqlReq = "select f from Categorie f where libelle = :lib ";		
@@ -24,6 +30,12 @@ public class CategorieDaoMysql implements CategorieDao{
 	}
 
 	@Override
+	/** Insérer la catégorie
+	 * *
+	 * @param em
+	 * @param libelle
+	 * @return
+	 */
 	public void insererCategorie(EntityManager em, Categorie categorie) {
 		em.persist( categorie);
 		

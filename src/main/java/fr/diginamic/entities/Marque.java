@@ -11,11 +11,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="MARQUE")
+/** Marque d'un  produit */
 public class Marque {
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO)
+	/** Identifiant généré par Mariadb */
 	private int		id;
 	
+	/** Nom de la marque */
 	private String	nom ;
 
 	@OneToMany( mappedBy ="marque")

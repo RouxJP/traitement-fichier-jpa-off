@@ -14,17 +14,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table( name="INGREDIENT")
+/** INgredient contenu dans un produit */
 public class Ingredient {
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO)
+	/** Identifiant généré par Mariadb */
 	private int		id;
 	
+	/* Libellé */
 	private String	libelle;
 
 	@ManyToMany
 	@JoinTable(	name="produit_ingredient", 
-	joinColumns = @JoinColumn(name="nom_ingredient", referencedColumnName="id"),
-	inverseJoinColumns= @JoinColumn(name="nom_produit", referencedColumnName="nom_produit"))	
+	joinColumns = @JoinColumn(name="id_ingredient", referencedColumnName="id"),
+	inverseJoinColumns= @JoinColumn(name="id_produit", referencedColumnName="id"))	
 	private Set<Produit>	lstProduits = new HashSet<Produit>();
 	
 	

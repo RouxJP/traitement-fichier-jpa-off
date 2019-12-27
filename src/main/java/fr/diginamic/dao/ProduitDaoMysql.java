@@ -5,11 +5,17 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import fr.diginamic.entities.Produit;
-import fr.diginamic.entities.Produit;
+
 
 public class ProduitDaoMysql implements ProduitDao {
 
 	@Override
+	/** Récupérer le produit
+	 * *
+	 * @param em
+	 * @param libelle
+	 * @return
+	 */
 	public Produit getProduit(EntityManager em, String libelle) {
 		Produit Produit = null;
 		String sqlReq = "select f from Produit f where nom_produit = :lib ";		
@@ -25,6 +31,12 @@ public class ProduitDaoMysql implements ProduitDao {
 	}
 
 	@Override
+	/** Insérer le produit
+	 * *
+	 * @param em
+	 * @param libelle
+	 * @return
+	 */
 	public void insererProduit(EntityManager em, Produit produit) {
 		em.persist( produit);
 

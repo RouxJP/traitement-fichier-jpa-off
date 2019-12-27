@@ -10,7 +10,7 @@
 		<class>fr.diginamic.entities.Categorie</class>
 		<class>fr.diginamic.entities.Ingredient</class>
 		<class>fr.diginamic.entities.Allergene</class>
-		<class>fr.diginamic.entities.Additifs</class>
+		<class>fr.diginamic.entities.Additif</class>
 		<properties>
 			<!-- desactiver l'autodetection des classes de type @Entity -->
 			<property name="hibernate.archive.autodetection" value="" />

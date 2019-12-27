@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!--redirection des logs vers la sortir Console Standard -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" level="INFO">
+		<encoder>
+			<!--  <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg%n</pattern> -->
+			<pattern>%msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>open-food-facts.log</file>
+		<append>true</append>
+		<immediateFlush>true</immediateFlush>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>	
+	
+	<logger name="fr.diginamic" level="DEBUG">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<logger name="dev.service" level="DEBUG">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<!--regle de logs par defaut. Ici : niveau INFO vers la sortie standard -->
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>

@@ -13,11 +13,18 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="CATEGORIE")
+/** Catégorie de produit
+ * 
+ * @author acer
+ *
+ */
 public class Categorie {
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO)
+	/** Identifiant généré par Mariadb */
 	private int		id;
 	
+	/** Libellé */
 	private String  libelle ;
 	
 	@OneToMany( mappedBy ="categorie")

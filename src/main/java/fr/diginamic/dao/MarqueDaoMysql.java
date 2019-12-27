@@ -9,6 +9,12 @@ import fr.diginamic.entities.Marque;
 public class MarqueDaoMysql implements MarqueDao {
 
 	@Override
+	/** Récupérer la marque
+	 * *
+	 * @param em
+	 * @param libelle
+	 * @return
+	 */
 	public Marque getMarque(EntityManager em, String libelle) {
 		Marque Marque = null;
 		String sqlReq = "select f from Marque f where nom = :lib ";		
@@ -24,6 +30,12 @@ public class MarqueDaoMysql implements MarqueDao {
 	}
 
 	@Override
+	/** Insérer la marque
+	 * *
+	 * @param em
+	 * @param libelle
+	 * @return
+	 */
 	public void insererMarque(EntityManager em, Marque marque) {
 		em.persist( marque);
 	}
